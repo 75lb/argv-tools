@@ -1,7 +1,7 @@
 'use strict'
 
 /**
- * Handles parsing different argv notations
+ * Some useful tools for working with `process.argv`.
  *
  * @module argv-tools
  * @typicalName argvTools
@@ -80,6 +80,7 @@ class ArgvArray extends Array {
 
   /**
    * Returns true if the array contains combined short options (e.g. `-ab`).
+   * @returns {boolean}
    */
   hasCombinedShortOptions () {
     return this.some(arg => re.combinedShort.test(arg))

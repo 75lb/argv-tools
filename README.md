@@ -7,7 +7,7 @@
 <a name="module_argv-tools"></a>
 
 ## argv-tools
-Handles parsing different argv notations
+Some useful tools for working with `process.argv`.
 
 **Example**  
 ```js
@@ -20,7 +20,7 @@ const argvTools = require('argv-tools')
         * [.clear()](#module_argv-tools.ArgvArray+clear)
         * [.expandOptionEqualsNotation()](#module_argv-tools.ArgvArray+expandOptionEqualsNotation)
         * [.expandGetoptNotation()](#module_argv-tools.ArgvArray+expandGetoptNotation)
-        * [.hasCombinedShortOptions()](#module_argv-tools.ArgvArray+hasCombinedShortOptions)
+        * [.hasCombinedShortOptions()](#module_argv-tools.ArgvArray+hasCombinedShortOptions) ⇒ <code>boolean</code>
     * [.re](#module_argv-tools.re)
     * [.expandCombinedShortArg(arg)](#module_argv-tools.expandCombinedShortArg) ⇒ <code>Array.&lt;string&gt;</code>
     * [.isOptionEqualsNotation(arg)](#module_argv-tools.isOptionEqualsNotation) ⇒ <code>boolean</code>
@@ -40,7 +40,7 @@ Array subclass encapsulating common operations on `process.argv`.
     * [.clear()](#module_argv-tools.ArgvArray+clear)
     * [.expandOptionEqualsNotation()](#module_argv-tools.ArgvArray+expandOptionEqualsNotation)
     * [.expandGetoptNotation()](#module_argv-tools.ArgvArray+expandGetoptNotation)
-    * [.hasCombinedShortOptions()](#module_argv-tools.ArgvArray+hasCombinedShortOptions)
+    * [.hasCombinedShortOptions()](#module_argv-tools.ArgvArray+hasCombinedShortOptions) ⇒ <code>boolean</code>
 
 <a name="module_argv-tools.ArgvArray+load"></a>
 
@@ -73,7 +73,7 @@ expand getopt-style combinedShort options.
 **Kind**: instance method of [<code>ArgvArray</code>](#module_argv-tools.ArgvArray)  
 <a name="module_argv-tools.ArgvArray+hasCombinedShortOptions"></a>
 
-#### argvArray.hasCombinedShortOptions()
+#### argvArray.hasCombinedShortOptions() ⇒ <code>boolean</code>
 Returns true if the array contains combined short options (e.g. `-ab`).
 
 **Kind**: instance method of [<code>ArgvArray</code>](#module_argv-tools.ArgvArray)  
