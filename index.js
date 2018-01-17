@@ -4,16 +4,31 @@
  * Handles parsing different argv notations
  *
  * @module argv-tools
+ * @typicalName argvTools
+ * @example
+ * const argvTools = require('argv-tools')
  */
 
- const re = {
-   short: /^-([^\d-])$/,
-   long: /^--(\S+)/,
-   combinedShort: /^-[^\d-]{2,}$/,
-   optEquals: /^(--\S+?)=(.*)/
- }
+/**
+ * Regular expressions for matching option formats.
+ * @static
+ */
+const re = {
+  short: /^-([^\d-])$/,
+  long: /^--(\S+)/,
+  combinedShort: /^-[^\d-]{2,}$/,
+  optEquals: /^(--\S+?)=(.*)/
+}
 
+/**
+ * Array subclass encapsulating common operations on `process.argv`.
+ * @static
+ */
 class ArgvArray extends Array {
+  /**
+   * Clears the array has loads the supplied input.
+   * @param {string[]} argv - The argv list to load. Defaults to `process.argv`.
+   */
   load (argv) {
     const arrayify = require('array-back')
     this.clear()
@@ -27,12 +42,15 @@ class ArgvArray extends Array {
     argv.forEach(arg => this.push(String(arg)))
   }
 
+  /**
+   * Clear the array.
+   */
   clear () {
     this.length = 0
   }
 
   /**
-   * expand --option=value style args. The value is clearly marked to indicate it is definitely a value (which would otherwise be unclear if the value is `--value`, which would be parsed as an option). The special marker is removed in parsing phase.
+   * expand ``--option=value` style args.
    */
   expandOptionEqualsNotation () {
     if (this.some(arg => re.optEquals.test(arg))) {
@@ -51,7 +69,7 @@ class ArgvArray extends Array {
   }
 
   /**
-   * expand getopt-style combinedShort options
+   * expand getopt-style combinedShort options.
    */
   expandGetoptNotation () {
     if (this.hasCombinedShortOptions()) {
@@ -60,6 +78,9 @@ class ArgvArray extends Array {
     }
   }
 
+  /**
+   * Returns true if the array contains combined short options (e.g. `-ab`).
+   */
   hasCombinedShortOptions () {
     return this.some(arg => re.combinedShort.test(arg))
   }
@@ -71,24 +92,54 @@ class ArgvArray extends Array {
   }
 }
 
+/**
+ * Expand a combined short option.
+ * @param {string} - the string to expand, e.g. `-ab`
+ * @returns {string[]}
+ * @static
+ */
 function expandCombinedShortArg (arg) {
   /* remove initial hypen */
   arg = arg.slice(1)
   return arg.split('').map(letter => '-' + letter)
 }
 
+/**
+ * Returns true if the supplied arg matches `--option=value` notation.
+ * @param {string} - the arg to test, e.g. `--one=something`
+ * @returns {boolean}
+ * @static
+ */
 function isOptionEqualsNotation (arg) {
   return re.optEquals.test(arg)
 }
 
+/**
+ * Returns true if the supplied arg is in either long (`--one`) or short (`-o`) format.
+ * @param {string} - the arg to test, e.g. `--one`
+ * @returns {boolean}
+ * @static
+ */
 function isOption (arg) {
   return (re.short.test(arg) || re.long.test(arg)) && !re.optEquals.test(arg)
 }
 
+/**
+ * Returns true if the supplied arg is in long (`--one`) format.
+ * @param {string} - the arg to test, e.g. `--one`
+ * @returns {boolean}
+ * @static
+ */
 function isLongOption (arg) {
   return re.long.test(arg) && !isOptionEqualsNotation(arg)
 }
 
+/**
+ * Returns the name from a long, short or `--options=value` arg.
+ * @param {string} - the arg to inspect, e.g. `--one`
+ * @returns {string}
+ * @static
+ */
 function getOptionName (arg) {
   if (re.short.test(arg)) {
     return arg.match(re.short)[1]
