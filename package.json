@@ -1,6 +1,6 @@
 {
   "name": "argv-tools",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Some useful tools for working with process.argv",
   "repository": "https://github.com/75lb/argv-tools",
   "scripts": {
