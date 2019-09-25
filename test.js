@@ -8,7 +8,7 @@ const runner = new TestRunner()
 
 runner.test('argvArray.expandOptionEqualsNotation()', function () {
   const argv = new ArgvArray()
-  argv.load([ '--one=1', '--two', '2', '--three=3', '4' ])
+  argv.load(['--one=1', '--two', '2', '--three=3', '4'])
   argv.expandOptionEqualsNotation()
   a.deepEqual(argv, [
     '--one', '1', '--two', '2', '--three', '3', '4'
@@ -17,14 +17,14 @@ runner.test('argvArray.expandOptionEqualsNotation()', function () {
 
 runner.test('argvArray.expandOptionEqualsNotation() 2', function () {
   const argv = new ArgvArray()
-  argv.load([ '--one=tree' ])
+  argv.load(['--one=tree'])
   argv.expandOptionEqualsNotation()
-  a.deepEqual(argv, [ '--one', 'tree' ])
+  a.deepEqual(argv, ['--one', 'tree'])
 })
 
 runner.test('argvArray.expandGetoptNotation()', function () {
   const argv = new ArgvArray()
-  argv.load([ '-abc' ])
+  argv.load(['-abc'])
   argv.expandGetoptNotation()
   a.deepEqual(argv.slice(), [
     '-a', '-b', '-c'
@@ -33,7 +33,7 @@ runner.test('argvArray.expandGetoptNotation()', function () {
 
 runner.test('argvArray.expandGetoptNotation() with values', function () {
   const argv = new ArgvArray()
-  argv.load([ '-abc', '1', '-a', '2', '-bc' ])
+  argv.load(['-abc', '1', '-a', '2', '-bc'])
   argv.expandGetoptNotation()
   a.deepEqual(argv, [
     '-a', '-b', '-c', '1', '-a', '2', '-b', '-c'
@@ -42,11 +42,11 @@ runner.test('argvArray.expandGetoptNotation() with values', function () {
 
 runner.test('argvArray.hasCombinedShortOptions()', function () {
   const argv = new ArgvArray()
-  argv.load([ '-abc', '1', '-a', '2' ])
+  argv.load(['-abc', '1', '-a', '2'])
   a.strictEqual(argv.hasCombinedShortOptions(), true)
-  argv.load([ '1', '-a', '2' ])
+  argv.load(['1', '-a', '2'])
   a.strictEqual(argv.hasCombinedShortOptions(), false)
-  argv.load([ '1', '-ab', '2' ])
+  argv.load(['1', '-ab', '2'])
   a.strictEqual(argv.hasCombinedShortOptions(), true)
 })
 

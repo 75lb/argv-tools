@@ -1,7 +1,7 @@
 [![view on npm](https://img.shields.io/npm/v/argv-tools.svg)](https://www.npmjs.org/package/argv-tools)
 [![npm module downloads](https://img.shields.io/npm/dt/argv-tools.svg)](https://www.npmjs.org/package/argv-tools)
 [![Build Status](https://travis-ci.org/75lb/argv-tools.svg?branch=master)](https://travis-ci.org/75lb/argv-tools)
-[![Dependency Status](https://david-dm.org/75lb/argv-tools.svg)](https://david-dm.org/75lb/argv-tools)
+[![Dependency Status](https://badgen.net/david/dep/75lb/argv-tools)](https://david-dm.org/75lb/argv-tools)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_argv-tools"></a>
@@ -141,4 +141,4 @@ Returns the name from a long, short or `--options=value` arg.
 
 * * *
 
-&copy; 2018 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
+&copy; 2018-19 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
