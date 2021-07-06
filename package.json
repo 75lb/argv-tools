@@ -23,7 +23,7 @@
     "line"
   ],
   "scripts": {
-    "test": "test-runner test.mjs",
+    "test": "test-runner test/*.mjs",
     "docs": "jsdoc2md -c jsdoc.conf --template README.hbs index.mjs > README.md"
   },
   "devDependencies": {

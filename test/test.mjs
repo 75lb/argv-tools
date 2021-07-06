@@ -1,5 +1,5 @@
 import TestRunner from 'test-runner'
-import a from 'assert/strict'
+import { strict as a } from 'assert'
 import { ArgvArray, isOption, isLongOption, getOptionName } from 'argv-tools'
 
 const tom = new TestRunner.Tom()
