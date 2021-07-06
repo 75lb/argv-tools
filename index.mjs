@@ -1,4 +1,5 @@
-'use strict'
+import arrayify from 'array-back'
+import findReplace from 'find-replace'
 
 /**
  * Some useful tools for working with `process.argv`.
@@ -24,20 +25,20 @@ const re = {
  * Array subclass encapsulating common operations on `process.argv`.
  * @static
  */
-class ArgvArray extends Array {
+export class ArgvArray extends Array {
   /**
    * Clears the array has loads the supplied input.
    * @param {string[]} argv - The argv list to load. Defaults to `process.argv`.
    */
   load (argv) {
-    const arrayify = require('array-back')
     this.clear()
     if (argv && argv !== process.argv) {
       argv = arrayify(argv)
     } else {
       /* if no argv supplied, assume we are parsing process.argv */
       argv = process.argv.slice(0)
-      argv.splice(0, 2)
+      const deleteCount = process.execArgv.some(isExecArg) ? 1 : 2
+      argv.splice(0, deleteCount)
     }
     argv.forEach(arg => this.push(String(arg)))
   }
@@ -73,8 +74,7 @@ class ArgvArray extends Array {
    */
   expandGetoptNotation () {
     if (this.hasCombinedShortOptions()) {
-      const findReplace = require('find-replace')
-      findReplace(this, re.combinedShort, expandCombinedShortArg)
+      findReplace(this, arg => re.combinedShort.test(arg), expandCombinedShortArg)
     }
   }
 
@@ -121,7 +121,7 @@ function isOptionEqualsNotation (arg) {
  * @returns {boolean}
  * @static
  */
-function isOption (arg) {
+export function isOption (arg) {
   return (re.short.test(arg) || re.long.test(arg)) && !re.optEquals.test(arg)
 }
 
@@ -131,7 +131,7 @@ function isOption (arg) {
  * @returns {boolean}
  * @static
  */
-function isLongOption (arg) {
+export function isLongOption (arg) {
   return re.long.test(arg) && !isOptionEqualsNotation(arg)
 }
 
@@ -141,7 +141,7 @@ function isLongOption (arg) {
  * @returns {string}
  * @static
  */
-function getOptionName (arg) {
+export function getOptionName (arg) {
   if (re.short.test(arg)) {
     return arg.match(re.short)[1]
   } else if (isLongOption(arg)) {
@@ -153,11 +153,10 @@ function getOptionName (arg) {
   }
 }
 
-exports.expandCombinedShortArg = expandCombinedShortArg
-exports.re = re
-exports.ArgvArray = ArgvArray
-exports.getOptionName = getOptionName
-exports.isOption = isOption
-exports.isLongOption = isLongOption
-exports.isOptionEqualsNotation = isOptionEqualsNotation
-exports.isValue = arg => !(isOption(arg) || re.combinedShort.test(arg) || re.optEquals.test(arg))
+function isValue (arg) {
+  return !(isOption(arg) || re.combinedShort.test(arg) || re.optEquals.test(arg))
+}
+
+function isExecArg (arg) {
+  return ['--eval', '-e'].indexOf(arg) > -1 || arg.startsWith('--eval=')
+}

@@ -1,7 +1,8 @@
-[![view on npm](https://img.shields.io/npm/v/argv-tools.svg)](https://www.npmjs.org/package/argv-tools)
-[![npm module downloads](https://img.shields.io/npm/dt/argv-tools.svg)](https://www.npmjs.org/package/argv-tools)
-[![Build Status](https://travis-ci.org/75lb/argv-tools.svg?branch=master)](https://travis-ci.org/75lb/argv-tools)
-[![Dependency Status](https://badgen.net/david/dep/75lb/argv-tools)](https://david-dm.org/75lb/argv-tools)
+[![view on npm](https://badgen.net/npm/v/argv-tools)](https://www.npmjs.org/package/argv-tools)
+[![npm module downloads](https://badgen.net/npm/dt/argv-tools)](https://www.npmjs.org/package/argv-tools)
+[![Gihub repo dependents](https://badgen.net/github/dependents-repo/75lb/argv-tools)](https://github.com/75lb/argv-tools/network/dependents?dependent_type=REPOSITORY)
+[![Gihub package dependents](https://badgen.net/github/dependents-pkg/75lb/argv-tools)](https://github.com/75lb/argv-tools/network/dependents?dependent_type=PACKAGE)
+[![Node.js CI](https://github.com/75lb/argv-tools/actions/workflows/node.js.yml/badge.svg)](https://github.com/75lb/argv-tools/actions/workflows/node.js.yml)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_argv-tools"></a>
@@ -141,4 +142,4 @@ Returns the name from a long, short or `--options=value` arg.
 
 * * *
 
-&copy; 2018-19 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
+&copy; 2018-21 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
