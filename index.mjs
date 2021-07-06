@@ -86,6 +86,20 @@ export class ArgvArray extends Array {
     return this.some(arg => re.combinedShort.test(arg))
   }
 
+  extractFlags (flagDefinitions) {
+    const output = {}
+    for (const def of flagDefinitions) {
+      for (const [index, arg] of this.entries()) {
+        const optionName = getOptionName(arg)
+        if (optionName === def.name || optionName === def.alias) {
+          output[def.name] = true
+          this.splice(index, 1)
+        }
+      }
+    }
+    return output
+  }
+
   static from (argv) {
     const result = new this()
     result.load(argv)
