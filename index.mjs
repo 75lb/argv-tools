@@ -86,14 +86,40 @@ export class ArgvArray extends Array {
     return this.some(arg => re.combinedShort.test(arg))
   }
 
-  extractFlags (flagDefinitions) {
+  /**
+  * Extract flags
+  */
+  extractFlags (definitions) {
     const output = {}
-    for (const def of flagDefinitions) {
+    for (const def of definitions) {
       for (const [index, arg] of this.entries()) {
         const optionName = getOptionName(arg)
         if (optionName === def.name || optionName === def.alias) {
           output[def.name] = true
           this.splice(index, 1)
+        }
+      }
+    }
+    return output
+  }
+
+  /**
+  * Extract option values
+  */
+  extractOptionValues (definitions) {
+    const output = {}
+    for (const def of definitions) {
+      for (const [index, arg] of this.entries()) {
+        const optionName = getOptionName(arg)
+        if (optionName === def.name || optionName === def.alias) {
+          if (index < this.length - 1 && !isOption(this[index + 1])) {
+            const optionValue = this[index + 1]
+            output[def.name] = optionValue
+            this.splice(index, 2)
+          } else {
+            output[def.name] = null
+            this.splice(index, 1)
+          }
         }
       }
     }

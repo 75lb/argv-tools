@@ -22,6 +22,8 @@ const argvTools = require('argv-tools')
         * [.expandOptionEqualsNotation()](#module_argv-tools.ArgvArray+expandOptionEqualsNotation)
         * [.expandGetoptNotation()](#module_argv-tools.ArgvArray+expandGetoptNotation)
         * [.hasCombinedShortOptions()](#module_argv-tools.ArgvArray+hasCombinedShortOptions) ⇒ <code>boolean</code>
+        * [.extractFlags()](#module_argv-tools.ArgvArray+extractFlags)
+        * [.extractOptionValues()](#module_argv-tools.ArgvArray+extractOptionValues)
     * [.re](#module_argv-tools.re)
     * [.expandCombinedShortArg(arg)](#module_argv-tools.expandCombinedShortArg) ⇒ <code>Array.&lt;string&gt;</code>
     * [.isOptionEqualsNotation(arg)](#module_argv-tools.isOptionEqualsNotation) ⇒ <code>boolean</code>
@@ -42,6 +44,8 @@ Array subclass encapsulating common operations on `process.argv`.
     * [.expandOptionEqualsNotation()](#module_argv-tools.ArgvArray+expandOptionEqualsNotation)
     * [.expandGetoptNotation()](#module_argv-tools.ArgvArray+expandGetoptNotation)
     * [.hasCombinedShortOptions()](#module_argv-tools.ArgvArray+hasCombinedShortOptions) ⇒ <code>boolean</code>
+    * [.extractFlags()](#module_argv-tools.ArgvArray+extractFlags)
+    * [.extractOptionValues()](#module_argv-tools.ArgvArray+extractOptionValues)
 
 <a name="module_argv-tools.ArgvArray+load"></a>
 
@@ -76,6 +80,18 @@ expand getopt-style combinedShort options.
 
 #### argvArray.hasCombinedShortOptions() ⇒ <code>boolean</code>
 Returns true if the array contains combined short options (e.g. `-ab`).
+
+**Kind**: instance method of [<code>ArgvArray</code>](#module_argv-tools.ArgvArray)  
+<a name="module_argv-tools.ArgvArray+extractFlags"></a>
+
+#### argvArray.extractFlags()
+Extract flags
+
+**Kind**: instance method of [<code>ArgvArray</code>](#module_argv-tools.ArgvArray)  
+<a name="module_argv-tools.ArgvArray+extractOptionValues"></a>
+
+#### argvArray.extractOptionValues()
+Extract option values
 
 **Kind**: instance method of [<code>ArgvArray</code>](#module_argv-tools.ArgvArray)  
 <a name="module_argv-tools.re"></a>
