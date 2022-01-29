@@ -6,9 +6,10 @@
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=12"
   },
-  "exports": "./index.mjs",
+  "type": "module",
+  "exports": "./index.js",
   "keywords": [
     "argv",
     "parse",
@@ -23,18 +24,18 @@
     "line"
   ],
   "scripts": {
-    "test": "test-runner test/*.mjs",
-    "docs": "jsdoc2md -c jsdoc.conf --template README.hbs index.mjs > README.md"
+    "test": "test-runner test/*.js",
+    "docs": "jsdoc2md --template README.hbs index.js > README.md"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^7.0.1",
-    "test-runner": "^0.9.6"
+    "jsdoc-to-markdown": "^7.1.1",
+    "test-runner": "^0.10.1"
   },
   "dependencies": {
-    "array-back": "^6.1.2",
+    "array-back": "^6.2.2",
     "find-replace": "^5.0.0"
   },
   "files": [
-    "index.mjs"
+    "index.js"
   ]
 }
