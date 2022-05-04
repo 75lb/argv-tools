@@ -37,7 +37,10 @@ export class ArgvArray extends Array {
     } else {
       /* if no argv supplied, assume we are parsing process.argv */
       argv = process.argv.slice(0)
-      const deleteCount = process.execArgv.some(isExecArg) ? 1 : 2
+      /* https://nodejs.org/dist/latest-v17.x/docs/api/process.html#processexecargv */
+      const deleteCount = process.execArgv.some(arg => {
+        return ['--eval', '-e'].includes(arg) || arg.startsWith('--eval=')
+      }) ? 1 : 2
       argv.splice(0, deleteCount)
     }
     argv.forEach(arg => this.push(String(arg)))
@@ -195,8 +198,4 @@ export function getOptionName (arg) {
 
 function isValue (arg) {
   return !(isOption(arg) || re.combinedShort.test(arg) || re.optEquals.test(arg))
-}
-
-function isExecArg (arg) {
-  return ['--eval', '-e'].indexOf(arg) > -1 || arg.startsWith('--eval=')
 }
