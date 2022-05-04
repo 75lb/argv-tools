@@ -1,11 +1,15 @@
 import Arg from './arg.js'
 
 class Value extends Arg {
+  value
+
+  constructor (value = {}) {
+    super(value)
+    this.value = value.value
+  }
+
   static create (arg) {
-    const matches = arg.match(/^--(\S+)/)
-    if (matches) {
-      return new this({ name: matches[1] })
-    }
+    return new this({ value: arg })
   }
 }
 
