@@ -83,16 +83,15 @@ class ArgV extends Array {
 
 export default ArgV
 
+// const argv = new ArgV()
+// argv.parse(
+//   ['--verbose', '--timeout', '100']
+// )
+// argv.applyDefinitions([
+//   new VarOptionDefinition({ name: 'timeout', type: Number, multiplicity: 1 }),
+//   new FlagOptionDefinition({ name: 'verbose' }),
+// ])
+// const result = argv.getResult()
 
-const argv = new ArgV()
-argv.parse(
-  ['--verbose', '--timeout', '100']
-)
-argv.applyDefinitions([
-  new VarOptionDefinition({ name: 'timeout', type: Number, multiplicity: 1 }),
-  new FlagOptionDefinition({ name: 'verbose' }),
-])
-const result = argv.getResult()
-
-console.log(argv)
-console.log(result)
+// console.log(argv)
+// console.log(result)
